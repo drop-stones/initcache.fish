@@ -4,7 +4,7 @@ function _initcache_background --description "Validate and refresh cache file if
     set -f cachefile $initcache_directory/$base.fish
 
     # Compare existing cache with fresh output
-    set -f cached (string collect < $cachefile); or return 1
+    set -f cached (string collect --allow-empty < $cachefile)
     set -f actual (_initcache_execute $argv); or return 1
 
     # Refresh if the cache is stale
